@@ -73,10 +73,12 @@ func (s *Source) Read(ctx context.Context) (sdk.Record, error) {
 
 // Teardown does nothing.
 func (s *Source) Teardown(ctx context.Context) error {
+	// maha: are all the connections closed after this call?
 	return nil
 }
 
 // Ack does nothing.
 func (s *Source) Ack(ctx context.Context, position sdk.Position) error {
+	sdk.Logger(ctx).Debug().Str("position", string(position)).Msg("got ack")
 	return nil
 }

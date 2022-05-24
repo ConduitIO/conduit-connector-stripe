@@ -25,6 +25,7 @@ const (
 
 const (
 	// SecretKey is the configuration name for Stripe secret key.
+	// maha: why not have it as "secretKey" instead of "key"? I think it would be clearer
 	SecretKey = "key"
 
 	// ResourceName is the configuration name for Stripe resource.

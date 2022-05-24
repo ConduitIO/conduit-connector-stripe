@@ -60,9 +60,9 @@ func TestParse(t *testing.T) {
 			},
 		},
 		{
+			// maha: this test and the one after are the same
 			name: "no secret key",
 			in: map[string]string{
-				SecretKey:    "",
 				ResourceName: "subscription",
 			},
 			wantErr:     true,
@@ -95,11 +95,10 @@ func TestParse(t *testing.T) {
 			expectedErr: underTestConfig.RequiredConfigErr(ResourceName).Error(),
 		},
 		{
-			name: "no secret key and resource name",
-			in: map[string]string{
-				SecretKey:    "",
-				ResourceName: "",
-			},
+			// maha: what i understood is that when you say "no" means the fields are not there.. so let's keep it the same
+			// and add another test for when these two are empty
+			name:    "no secret key and resource name",
+			in:      map[string]string{},
 			wantErr: true,
 			expectedErr: multierr.Combine(underTestConfig.RequiredConfigErr(SecretKey),
 				underTestConfig.RequiredConfigErr(ResourceName)).Error(),

@@ -15,6 +15,8 @@ The config passed to `Configure` can contain the following fields:
 |-------------|------------------------------------------------------------------------------------------------------------------|----------|------------------------------|
 | `key`       | Stripe [secret key](https://dashboard.stripe.com/apikeys).                                                       | yes      | "sk_51Kr0QrJit566F2YtZAwMlh" |
 | `resource`  | The name of Stripe resource. A list of supported resources can be found [here](models/resources/README.md). | yes      | "plan"                       |
+
+[comment]: <> (maha: we prefer having all the configs as camelCase.. so this could be maxRetry, maxRetries or retryMax)
 | `retry_max` | The maximum number of requests to Stripe in case of failure. By default is 3. The maximum is 10.                 | no       | "5"                          |                                                                                           | yes      | "id"                                            |
 | `limit`     | Count of records in one butch. By default is 50. The maximum is 100.                                             | no       | "70"                         |
 
@@ -29,6 +31,8 @@ The `Configure` method parses the configuration and validates them.
 The `Open` method parses the current position, initializes an 
 [HTTP client](https://github.com/hashicorp/go-retryablehttp), and initializes Snapshot (only if in the position IteratorType equals Snapshot) and CDC iterators.
 The `Read` method calls the method `Next` of the current iterator and returns the next record.
+
+[comment]: <> (maha: still in development?)
 The `Ack` method checks if the record with the position was recorded (under development).
 
 **Note:** Data from Stripe is sorted by creation date in descending order, with no manual sort option.
@@ -82,8 +86,9 @@ The data in the resulting slice is ready to be returned by the `Read` method rec
 All the following data are taken by the [ending_before](#ending_before) script.
 
 ### Position
-Position has the following fields:
+Position has the following:
 
+[comment]: <> (maha: maybe show an example of a position and how it's split into these)
 | name            | type    | description                            |
 |-----------------|---------|----------------------------------------|
 | `IteratorType`  | string  | `s` - Snapshot (by default), `c` - CDC |

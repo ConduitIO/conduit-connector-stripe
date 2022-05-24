@@ -18,9 +18,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/hashicorp/go-retryablehttp"
-
 	"github.com/conduitio/conduit-connector-stripe/config"
+	"github.com/hashicorp/go-retryablehttp"
 )
 
 const methodGet = "GET"

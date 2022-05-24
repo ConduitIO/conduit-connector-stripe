@@ -89,3 +89,8 @@ func TestSource_Configure(t *testing.T) {
 		})
 	}
 }
+
+// maha: we need more tests for real scenarios.. check S3 connector source tests for ideas
+// like, what happens when source is empty, what happens when it stops and continue, what happens when it stops
+// exactly after snapshot and before cdc, and more..
+// https://github.com/ConduitIO/conduit-connector-s3/blob/main/source/source_integration_test.go
