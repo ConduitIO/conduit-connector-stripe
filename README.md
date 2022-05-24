@@ -1,6 +1,7 @@
 # Conduit Connector Stripe
 
 ### General
+haris: nitpick: not a builtin plugin
 The Stripe connector is one of [Conduit](https://github.com/ConduitIO/conduit) builtin plugins. It provides a source Stripe connector.
 
 ### Prerequisites
@@ -19,12 +20,15 @@ The config passed to `Configure` can contain the following fields:
 [comment]: <> (maha: we prefer having all the configs as camelCase.. so this could be maxRetry, maxRetries or retryMax)
 | `retry_max` | The maximum number of requests to Stripe in case of failure. By default is 3. The maximum is 10.                 | no       | "5"                          |                                                                                           | yes      | "id"                                            |
 | `limit`     | Count of records in one butch. By default is 50. The maximum is 100.                                             | no       | "70"                         |
+haris: typo above butch -> batch. also, what are the reasons for setting max values for retries and the batch?
+haris: nitpick, maybe rename limit to batch size. limit (at least to me) sounds more like a global limit.
 
 ### How to build it
 Run `make build`.
 
 ### Testing
 Run `make test`.
+haris: is it possible to have integration tests?
 
 ### Stripe Source
 The `Configure` method parses the configuration and validates them.
@@ -50,6 +54,7 @@ After all the data from the resulting slice has been read, the system makes the 
 
 The system stops making requests when the field `has_next` equals false. Then, the system sets the `IteratorType` with CDC value and clears the `Cursor` value.
 
+haris: descending order by which field? CreatedAt I guess?
 **Note:** The Snapshot process creates a copy of the data in descending order.
 
 ### Change Data Capture

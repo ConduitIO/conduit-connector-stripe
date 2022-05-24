@@ -73,5 +73,7 @@ func Parse(cfg map[string]string) (Config, error) {
 		config.Limit = limit
 	}
 
+	// haris: it might be a good idea to make sure that
+	// when an error is returned, then we also return Config{}.
 	return config, config.Validate()
 }

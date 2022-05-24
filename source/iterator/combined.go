@@ -54,5 +54,6 @@ func (iter *Combined) Next() (sdk.Record, error) {
 		return iter.cdc.Next()
 	}
 
+	// haris: nitpick: would be good to also return the unexpected iterator type
 	return sdk.Record{}, errors.New("the iterator type is wrong")
 }

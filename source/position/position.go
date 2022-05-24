@@ -53,7 +53,7 @@ func ParseSDKPosition(p sdk.Position) (Position, error) {
 			CreatedAt:    time.Now().Unix(),
 		}, nil
 	}
-
+	// haris: why not store as JSON?
 	parts := strings.Split(string(p), ".")
 
 	if len(parts) != reflect.TypeOf(Position{}).NumField() {

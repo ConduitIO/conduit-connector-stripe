@@ -71,6 +71,8 @@ func (s *Source) Read(ctx context.Context) (sdk.Record, error) {
 	return r, nil
 }
 
+// haris: it would be good to explain why, especially because we are using
+// an HTTP client, so one would generally expect cached connections to be released.
 // Teardown does nothing.
 func (s *Source) Teardown(ctx context.Context) error {
 	// maha: are all the connections closed after this call?
