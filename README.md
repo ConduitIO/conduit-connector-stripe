@@ -41,6 +41,8 @@ The `Ack` method checks if the record with the position was recorded (under deve
 
 **Note:** Data from Stripe is sorted by creation date in descending order, with no manual sort option.
 
+haris: I like the docs below, and I think they should be actually moved into the code. it's more like impl. details,
+and it also makes the code more clear.
 ### Snapshot
 The system retrieves data from the list of objects of a defined Stripe resource (e.g. resource [plan](https://stripe.com/docs/api/plans/list)).
 

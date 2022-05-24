@@ -67,6 +67,8 @@ func (s Stripe) GetResource(startingAfter string) (models.ResourceResponse, erro
 
 	data, err := s.httpCli.Get(url, header)
 	if err != nil {
+		// haris: it might be good to log the URL, since it might help with some errors
+		// e.g. malformed url, wrong encoding, ID etc.
 		return resp, fmt.Errorf("get data from stripe, by url and header: %w", err)
 	}
 
