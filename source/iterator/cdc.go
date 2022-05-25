@@ -29,10 +29,13 @@ import (
 type CDC struct {
 	stripeSvc Stripe
 	position  *position.Position
+	// haris: would be good to clarify
 	eventData []models.EventData
 }
 
 // NewCDC initializes cdc iterator.
+// haris: given that pos is passed as a pointer, that means we are updating it
+// are we sure that won't create any negative side effects?
 func NewCDC(stripeSvc Stripe, pos *position.Position) *CDC {
 	return &CDC{
 		stripeSvc: stripeSvc,

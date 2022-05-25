@@ -38,6 +38,9 @@ const (
 const positionFormat = "%s.%s.%d.%d"
 
 // A Position represents a Stripe position.
+// haris: let's have an explanation for each of these fields,
+// what they are, how they change etc.
+// also, do all of these need to be exported?
 type Position struct {
 	IteratorType string
 	Cursor       string

@@ -41,6 +41,7 @@ type EventData struct {
 }
 
 // An EventDataObject represents an object of event's data.
+// haris: is it a full object, or just the changed values?
 type EventDataObject struct {
 	Object map[string]interface{} `json:"object"`
 }

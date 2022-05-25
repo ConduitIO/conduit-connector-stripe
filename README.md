@@ -20,6 +20,7 @@ The config passed to `Configure` can contain the following fields:
 [comment]: <> (maha: we prefer having all the configs as camelCase.. so this could be maxRetry, maxRetries or retryMax)
 | `retry_max` | The maximum number of requests to Stripe in case of failure. By default is 3. The maximum is 10.                 | no       | "5"                          |                                                                                           | yes      | "id"                                            |
 | `limit`     | Count of records in one butch. By default is 50. The maximum is 100.                                             | no       | "70"                         |
+
 haris: typo above butch -> batch. also, what are the reasons for setting max values for retries and the batch?
 haris: nitpick, maybe rename limit to batch size. limit (at least to me) sounds more like a global limit.
 
@@ -62,6 +63,8 @@ haris: descending order by which field? CreatedAt I guess?
 ### Change Data Capture
 The system retrieves data from [Stripe events](https://api.stripe.com/v1/events) of the defined resource.
 
+haris: from the docs below, I wasn't able to understand when do we use starting_after and when do we use ending_before.
+
 Because of this, receiving data is divided by requests to Stripe with different "offset" parameters:
 - starting_after
 - ending_before
@@ -69,6 +72,7 @@ Because of this, receiving data is divided by requests to Stripe with different 
 Each time the `Read` method is called, the system sets the iteration index of resulting slice to the position and updates `Cursor` value when the last slice element is read.
 
 #### starting_after
+haris: can you please clarify what does "first start of the pipeline `CreatedAt`." mean?
 The system makes requests in the loop to get all the data since the first start of the pipeline `CreatedAt`.
 
 After each request, the system adds the received data to the final slice and makes the next request with the starting_after parameter, which is the event ID of the last element from the response.
