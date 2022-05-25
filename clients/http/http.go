@@ -26,6 +26,7 @@ const methodGet = "GET"
 
 // A Client represents retryable http client.
 type Client struct {
+	// haris: it looks this can be unexported
 	HTTPClient *retryablehttp.Client
 }
 
@@ -61,6 +62,7 @@ func (cli Client) Get(url string, header ...map[string]string) ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("read all response body: %w", err)
 	}
-
+	// haris: thinking out loud, I'm wondering if it makes returning an error
+	// if we cannot close the response body. we still got the data.
 	return data, r.Body.Close()
 }

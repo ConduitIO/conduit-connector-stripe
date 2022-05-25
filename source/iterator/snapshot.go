@@ -26,6 +26,9 @@ import (
 )
 
 // A Snapshot represents a struct of snapshot iterator.
+// haris: nitpick: it might be good to rename it to SnapshotIterator.
+// Snapshot (at least to me) sounds like it refers to the snapshot itself,
+// not an iterator over all of the snapshot data.
 type Snapshot struct {
 	stripeSvc Stripe
 	position  *position.Position
@@ -44,6 +47,8 @@ func NewSnapshot(stripeSvc Stripe, pos *position.Position) *Snapshot {
 // Next returns the next record.
 func (iter *Snapshot) Next() (sdk.Record, error) {
 	if iter.response == nil || len(iter.response.Data) == iter.index {
+		// haris: maybe rename populateWithResource to refreshData
+		// that would make reading this code here easier
 		if err := iter.populateWithResource(); err != nil {
 			return sdk.Record{}, fmt.Errorf("populate with the resource: %w", err)
 		}
@@ -56,6 +61,7 @@ func (iter *Snapshot) Next() (sdk.Record, error) {
 		}
 	}
 
+	// haris: why do we marshall it into JSON? what's the data format of iter.response.Data[iter.index]?
 	payload, err := json.Marshal(iter.response.Data[iter.index])
 	if err != nil {
 		return sdk.Record{}, fmt.Errorf("marshal payload: %w", err)
