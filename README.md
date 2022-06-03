@@ -33,6 +33,14 @@ The `Teardown` method calls the method `Close` of the http client, which calls `
 
 Stripe source connector supports Change data capture (CDC) process. 
 
+### Snapshot
+The `Snapshot` iterator runs first and receives data from the list of records of a defined Stripe resource (e.g. [list of a plan resource](https://stripe.com/docs/api/plans/list)).
+
+**Note**: The `Snapshot` iterator creates a copy of the data, which is sorted by date of creation in descending order.
+
+### Change Data Capture
+The `CDC` iterator runs after the `Snapshot` and receives data from [Stripe events](https://api.stripe.com/v1/events) of the defined resource since the connector was set up.
+
 ### Position
 Position is a JSON object with the following fields:
 
